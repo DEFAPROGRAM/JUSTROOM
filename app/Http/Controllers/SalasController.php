@@ -61,10 +61,10 @@ class SalasController extends Controller
     // Método para eliminar una sala (DELETE)
     public function destroy($id_sala)
     {
-        // Búsqueda de la sede por ID
+        // Búsqueda de la sala por ID
         $sala = Salas::findOrFail($id_sala);
 
-        // Eliminación de la sede
+        // Eliminación de la sala
         $sala->delete();
 
         // Mensaje de éxito
