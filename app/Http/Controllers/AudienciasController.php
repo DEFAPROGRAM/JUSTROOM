@@ -11,9 +11,9 @@ class AudienciasController extends Controller
     public function index()
     {
         // Obtener todas las audiencias con sus relaciones (sala y juzgado)
-        $audiencias = Audiencias::with(['sala', 'juzgado'])->get();
+        $audiencia = Audiencias::with(['sala', 'juzgado'])->get();
 
-        return response()->json($audiencias);
+        return response()->json($audiencia);
     }
 
     // Método para obtener una audiencia específica por ID (GET)
@@ -32,8 +32,8 @@ class AudienciasController extends Controller
         $request->validate([
             'descripcion' => 'required|string',
             'fecha' => 'required|date',
-            'hora_inicio' => 'required|date_format:H:i',
-            'hora_fin' => 'required|date_format:H:i|after:hora_inicio', // Valida que la hora de fin sea después de la de inicio
+            'hora_inicio' => 'required|date_format:H:i:s',
+            'hora_fin' => 'required|date_format:H:i:s|after:hora_inicio', // Valida que la hora de fin sea después de la de inicio
             'id_sala' => 'required|exists:salas,id_sala', // Verifica que la sala exista
             'id_juzgado' => 'required|exists:juzgados,id_juzgado', // Verifica que el juzgado exista
         ]);
