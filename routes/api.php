@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SedesController;
 use App\Http\Controllers\JuzgadosController;
 use App\Http\Controllers\SalasController;
-use App\Http\Controllers\AudienciasController;
 use App\Http\Controllers\ReservasController;
 
 /*
@@ -27,5 +26,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('sedes', SedesController::class);
 Route::apiResource('juzgados', JuzgadosController::class);
 Route::apiResource('salas', SalasController::class);
-Route::apiResource('audiencias', AudienciasController::class);
 Route::apiResource('reservas', ReservasController::class);
