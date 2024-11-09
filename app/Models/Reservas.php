@@ -9,18 +9,37 @@ class Reservas extends Model
 {
     use HasFactory;
 
-    protected $fillable = 
-    ['fecha_reserva', 
-    'observaciones', 
-    'estado', 
-    'id_audiencia', 
-    'id_usuario'
-];
+    protected $table = 'reservas';
+    protected $primaryKey = 'id_reserva';
 
-    // Relación con la tabla Audiencias
-    public function audiencia()
+    protected $fillable = [
+        'id_sala',
+        'id_juzgado',
+        'id_usuario',
+        'descripcion',
+        'fecha',
+        'hora_inicio',
+        'hora_fin',
+        'observaciones',
+        'estado'
+    ];
+
+    protected $casts = [
+        'fecha' => 'date',
+        'hora_inicio' => 'datetime',
+        'hora_fin' => 'datetime',
+    ];
+
+    // Relación con la tabla Salas
+    public function sala()
     {
-        return $this->belongsTo(Audiencias::class, 'id_audiencia');
+        return $this->belongsTo(Sala::class, 'id_sala');
+    }
+
+    // Relación con la tabla Juzgados
+    public function juzgado()
+    {
+        return $this->belongsTo(Juzgado::class, 'id_juzgado');
     }
 
     // Relación con la tabla Users
@@ -28,6 +47,4 @@ class Reservas extends Model
     {
         return $this->belongsTo(User::class, 'id_usuario');
     }
-    // la llave primaria para la tabla Reservas
-    protected $primaryKey = 'id_reserva';
 }
